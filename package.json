@@ -1,0 +1,38 @@
+{
+  "name": "interview-webpack",
+  "version": "1.0.0",
+  "description": "面试-webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack server --config build-base-conf/webpack.dev.js",
+    "devBuild": "webpack --config build-base-conf/webpack.dev.js",
+    "build": "webpack --config build-base-conf/webpack.prod.js"
+  },
+  "keywords": [],
+  "author": "尘心",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "autoprefixer": "^10.4.4",
+    "babel-loader": "^8.2.4",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "postcss-loader": "^6.2.1",
+    "style-loader": "^3.3.1",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}
