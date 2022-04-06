@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack server --config build-multi-entry/webpack.dev.js",
-    "devBuild": "webpack --config build-multi-entry/webpack.dev.js",
-    "build": "webpack --config build-multi-entry/webpack.prod.js"
+    "dev": "webpack server --config build-min-extract-css/webpack.dev.js",
+    "devBuild": "webpack --config build-min-extract-css/webpack.dev.js",
+    "build": "webpack --config build-min-extract-css/webpack.prod.js"
   },
   "keywords": [],
   "author": "尘心",
@@ -24,8 +24,11 @@
     "html-webpack-plugin": "^5.5.0",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "postcss-loader": "^6.2.1",
     "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2",
