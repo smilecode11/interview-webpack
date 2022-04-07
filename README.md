@@ -16,9 +16,9 @@
 
 ## webpack 性能优化
 * 优化打包构建速度 - 开发体验和效率
-  * 优化 babel-loader
-  * IgnorePlugin
-  * noParse
+  * 优化 babel-loader, 加缓存
+  * IgnorePlugin, 直接忽略依赖库的某模块, 不引入
+  * noParse,  引入依赖库, 但不打包
   * happyPack
   * ParllelUglifyPlugin
   * 自动刷新

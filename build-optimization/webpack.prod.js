@@ -14,6 +14,8 @@ module.exports = merge(webpackCommonConf, {
         path: distPath,
     },
     module: {
+        //  noParse 忽略大型的 library 可以提高构建性能
+        noParse: /jquery|lodash/,
         rules: [
             // 图片 - 考虑 base64 编码的情况
             {
@@ -50,6 +52,12 @@ module.exports = merge(webpackCommonConf, {
         //  抽离 css 文件
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css'
+        }),
+
+        //  1.webpack.IgnorePlugin 实例 忽略 moment库 下的 ./locale(语言包) 模块的引入
+        new webpack.IgnorePlugin({
+            resourceRegExp: /\.\/locale/,
+            contextRegExp: /moment/
         })
     ],
 
