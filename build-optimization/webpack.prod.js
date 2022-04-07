@@ -1,3 +1,4 @@
+const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -11,6 +12,10 @@ const { distPath, srcPath } = require('./paths')
 
 module.exports = merge(webpackCommonConf, {
     mode: 'production',
+    entry: {
+        index: path.join(srcPath, 'index.js'),
+        other: path.join(srcPath, 'other.js')
+    },
     output: {
         filename: '[name].[contenthash:8].js',  //  打包代码时, 加上hash值, 通过 hash 值判断是否命中缓存去获取资源
         path: distPath,

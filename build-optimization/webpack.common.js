@@ -4,10 +4,6 @@ const { VueLoaderPlugin } = require('vue-loader/dist/index')
 const { srcPath } = require("./paths")
 
 module.exports = {
-    entry: {
-        index: path.join(srcPath, 'index.js'),
-        other: path.join(srcPath, 'other.js')
-    },
     module: {
         rules: [
             {

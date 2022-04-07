@@ -43,4 +43,12 @@ import Hello from './Hello.vue'
 const app = createApp(Hello)
 app.mount('#hello')
 
+//  热更新处理: 修改 js 文件会刷新页面, 导致状态丢失.
+//  此处需要进行授权于单个(多个)文件允许热更新
+if (module.hot) {
+    module.hot.accept(['./math'], () => {
+        console.log('hot..')
+    })
+}
+
 console.log('window.ENV', ENV)

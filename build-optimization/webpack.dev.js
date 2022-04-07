@@ -1,10 +1,21 @@
+const path = require('path')
 const webpack = require('webpack')
+const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin')    //  热更新插件
 const { merge } = require('webpack-merge')   //  此处用于合并配置项, 作用类似 Object.assign
 const webpackCommonConf = require("./webpack.common.js")
 const { srcPath } = require('./paths')
 
 module.exports = merge(webpackCommonConf, {
     mode: 'development',
+    entry: {
+        // index: path.join(srcPath, 'index.js'),
+        index: [    //  index 被赋予热更新能力
+            'webpack-dev-server/client?http://localhost:8080/',
+            'webpack/hot/dev-server',
+            path.join(srcPath, 'index.js')
+        ],
+        other: path.join(srcPath, 'other.js')
+    },
     module: {
         rules: [
             {
@@ -32,12 +43,16 @@ module.exports = merge(webpackCommonConf, {
     plugins: [
         new webpack.DefinePlugin({
             ENV: JSON.stringify('development')  //  window.ENV
-        })
+        }),
+
+        new HotModuleReplacementPlugin()
     ],
     devServer: {
         port: 8080,
         open: true,  //  自动打开浏览器
-        compress: true,  //  启动 gzip 压缩 
+        compress: true,  //  启动 gzip 压缩
+
+        hot: true,   //  开启热更新
 
         //  设置代理
         proxy: {

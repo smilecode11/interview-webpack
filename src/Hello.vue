@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    {{ message }} - {{ count }}
+    {{ message }} - {{ count }} - 尘心
     <button @click="count++">add count</button>
   </div>
 </template>

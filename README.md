@@ -20,7 +20,7 @@
   * IgnorePlugin, 直接忽略依赖库的某模块, 不引入
   * noParse,  引入依赖库, 但不打包
   * happyPack, 多进程打包
-  * ParllelUglifyPlugin
+  * ParllelUglifyPlugin, 多进程压缩 JS
   * 自动刷新
   * 热更新
   * DllPugin
