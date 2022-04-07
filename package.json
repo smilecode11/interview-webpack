@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack server --config build-vue-conf/webpack.dev.js",
-    "devBuild": "webpack --config build-vue-conf/webpack.dev.js",
-    "build": "webpack --config build-vue-conf/webpack.prod.js"
+    "dev": "webpack server --config build-optimization/webpack.dev.js",
+    "devBuild": "webpack --config build-optimization/webpack.dev.js",
+    "build": "webpack --config build-optimization/webpack.prod.js"
   },
   "keywords": [],
   "author": "尘心",
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
+    "moment": "^2.29.2",
     "vue": "^3.2.31"
   }
 }
