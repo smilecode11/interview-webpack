@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack server --config build-split-chunks/webpack.dev.js",
-    "devBuild": "webpack --config build-split-chunks/webpack.dev.js",
-    "build": "webpack --config build-split-chunks/webpack.prod.js"
+    "dev": "webpack server --config build-vue-conf/webpack.dev.js",
+    "devBuild": "webpack --config build-vue-conf/webpack.dev.js",
+    "build": "webpack --config build-vue-conf/webpack.prod.js"
   },
   "keywords": [],
   "author": "尘心",
@@ -15,6 +15,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
+    "@vue/compiler-sfc": "^3.2.31",
     "autoprefixer": "^10.4.4",
     "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
@@ -30,12 +31,14 @@
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "url-loader": "^4.1.1",
+    "vue-loader": "^17.0.0",
     "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.0",
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "axios": "^0.26.1"
+    "axios": "^0.26.1",
+    "vue": "^3.2.31"
   }
 }
