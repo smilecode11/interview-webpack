@@ -25,13 +25,7 @@ module.exports = {
                     }
                 }
             },
-            {
-                test: /\.js$/,
-                // use: ['babel-loader'],
-                use: ['babel-loader?cacheDirectory'],   //  开启缓存
-                include: srcPath,   //  明确范围, include 和 exclude 两者选一个即可
-                // exclude: /node_modules/
-            },
+            //  babel-loader, happypack 演示
         ]
     },
     plugins: [

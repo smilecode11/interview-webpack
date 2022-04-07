@@ -3,9 +3,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const { merge } = require('webpack-merge')   //  此处用于合并配置项, 作用类似 Object.assign
+const { merge } = require('webpack-merge')
+const HappyPack = require('happypack')
+const WebpackParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const webpackCommonConf = require("./webpack.common.js")
-const { distPath } = require('./paths')
+const { distPath, srcPath } = require('./paths')
 
 module.exports = merge(webpackCommonConf, {
     mode: 'production',
@@ -40,7 +42,15 @@ module.exports = merge(webpackCommonConf, {
             {
                 test: /\.less$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
-            }
+            },
+            {
+                test: /\.js$/,
+                // use: ['babel-loader'],
+                // use: ['babel-loader?cacheDirectory'],   //  开启缓存
+                use: ['happypack/loader?id=babel'],   //    把对 .js 文件的处理转交给 id 为 babel 的 HappyPack 实例
+                include: srcPath,   //  明确范围, include 和 exclude 两者选一个即可
+                // exclude: /node_modules/
+            },
         ]
     },
     plugins: [
@@ -58,6 +68,33 @@ module.exports = merge(webpackCommonConf, {
         new webpack.IgnorePlugin({
             resourceRegExp: /\.\/locale/,
             contextRegExp: /moment/
+        }),
+
+        //  happypack 开启多进程打包
+        new HappyPack({
+            //  使用唯一标识符 id 代表当前 happypack 处理一类特定的文件
+            id: 'babel',
+            //  如何处理 js 文件, 和 loader 配置一样
+            loaders: ['babel-loader?cacheDirectory']
+        }),
+
+        //  使用 WebpackParallelUglifyPlugin 多进程压缩输出 JS
+        new WebpackParallelUglifyPlugin({
+            // （还是使用 UglifyJS 压缩，只不过帮助开启了多进程）
+            uglifyJS: {
+                output: {
+                    beautify: false, // 最紧凑的输出
+                    comments: false, // 删除所有的注释
+                },
+                compress: {
+                    // 删除所有的 `console` 语句，可以兼容ie浏览器
+                    drop_console: true,
+                    // 内嵌定义了但是只用到一次的变量
+                    collapse_vars: true,
+                    // 提取出出现多次但是没有定义成变量去引用的静态值
+                    reduce_vars: true,
+                }
+            }
         })
     ],
 

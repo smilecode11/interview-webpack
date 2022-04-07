@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')   //  此处用于合并配置项, 作用类似 Object.assign
 const webpackCommonConf = require("./webpack.common.js")
+const { srcPath } = require('./paths')
 
 module.exports = merge(webpackCommonConf, {
     mode: 'development',
@@ -18,6 +19,13 @@ module.exports = merge(webpackCommonConf, {
             {
                 test: /\.less$/,
                 use: ['style-loader', 'css-loader', 'less-loader']
+            },
+            {
+                test: /\.js$/,
+                // use: ['babel-loader'],
+                use: ['babel-loader?cacheDirectory'],   //  开启缓存
+                include: srcPath,   //  明确范围, include 和 exclude 两者选一个即可
+                // exclude: /node_modules/
             },
         ]
     },

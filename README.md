@@ -19,9 +19,10 @@
   * 优化 babel-loader, 加缓存
   * IgnorePlugin, 直接忽略依赖库的某模块, 不引入
   * noParse,  引入依赖库, 但不打包
-  * happyPack
+  * happyPack, 多进程打包
   * ParllelUglifyPlugin
   * 自动刷新
   * 热更新
   * DllPugin
+
 * 优化产出代码 - 产品性能
