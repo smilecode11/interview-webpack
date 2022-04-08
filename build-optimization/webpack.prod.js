@@ -49,6 +49,11 @@ module.exports = merge(webpackCommonConf, {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
             },
             {
+                test: /\.(scss|sass)/,
+                include: srcPath,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader', 'postcss-loader']
+            },
+            {
                 test: /\.js$/,
                 // use: ['babel-loader'],
                 // use: ['babel-loader?cacheDirectory'],   //  开启缓存
@@ -100,7 +105,7 @@ module.exports = merge(webpackCommonConf, {
                     reduce_vars: true,
                 }
             }
-        })
+        }),
     ],
 
     optimization: {

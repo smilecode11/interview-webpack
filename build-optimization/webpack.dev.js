@@ -29,7 +29,17 @@ module.exports = merge(webpackCommonConf, {
             },
             {
                 test: /\.less$/,
-                use: ['style-loader', 'css-loader', 'less-loader']
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+            },
+            {
+                test: /\.(scss|sass)/,
+                include: srcPath,
+                use: ['style-loader', 'css-loader', 'postcss-loader'/* , {
+                    loader: 'thread-loader',
+                    options: {
+                        workerParallelJobs: 2
+                    }
+                } */, 'sass-loader']
             },
             {
                 test: /\.js$/,

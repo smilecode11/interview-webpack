@@ -19,10 +19,14 @@
   * 优化 babel-loader, 加缓存
   * IgnorePlugin, 直接忽略依赖库的某模块, 不引入
   * noParse,  引入依赖库, 但不打包
-  * happyPack, 多进程打包
+  * happyPack, 多进程打包 (不再维护, 建议使用 thread-laoder)
+  * thread-loader, 将耗时 loader 放在一个独立的进程中运行, 加快 loader 构建速度
   * ParllelUglifyPlugin, 多进程压缩 JS
   * 自动刷新
   * 热更新
-  * DllPugin
+  * 缓存(cache), webpack5 开箱即用
+  * DllPlugin, 大依赖缓存 (webpack5 不需要)
+  * AutoDllPlugin & hardSourceWebpackPlugin, DllPlugin 代替方案 (webpack5 不需要)
+  * 使用 webpack5 资源模块 (asset module)
 
 * 优化产出代码 - 产品性能
