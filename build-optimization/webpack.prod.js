@@ -7,6 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { merge } = require('webpack-merge')
 const HappyPack = require('happypack')
 const WebpackParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin') //  Scope Hosting
 const webpackCommonConf = require("./webpack.common.js")
 const { distPath, srcPath } = require('./paths')
 
@@ -19,6 +20,11 @@ module.exports = merge(webpackCommonConf, {
     output: {
         filename: '[name].[contenthash:8].js',  //  打包代码时, 加上hash值, 通过 hash 值判断是否命中缓存去获取资源
         path: distPath,
+        // publicPath:  'https://cnd.abc.com' //  修改所有 ing钛资源文件 url 的前缀
+    },
+    resolve: {
+        //  针对 NPM 中的第三方模块优先采用 jsnext:main 中指向的 ES6 模块化语法文件
+        mainFields: ['jsnext:main', 'browser', 'main']
     },
     module: {
         //  noParse 忽略大型的 library 可以提高构建性能
@@ -35,6 +41,9 @@ module.exports = merge(webpackCommonConf, {
                         limit: 5 * 1024,
                         // 打包到 img 目录下
                         outputPath: '/img1/',
+
+                        //  设置图片的 cdn 地址, 也可以统一在外面的 output 中设置
+                        // publicPath: 'http://cdn.abc.com'
                     }
                 }
             },
@@ -106,6 +115,9 @@ module.exports = merge(webpackCommonConf, {
                 }
             }
         }),
+
+        //  启用 Scope Hoisting
+        new ModuleConcatenationPlugin()
     ],
 
     optimization: {
