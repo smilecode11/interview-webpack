@@ -23,7 +23,7 @@
   - noParse, 引入依赖库, 但不打包
   - happyPack, 多进程打包 (不再维护, 建议使用 thread-laoder)
   - thread-loader, 将耗时 loader 放在一个独立的进程中运行, 加快 loader 构建速度
-  - ParllelUglifyPlugin, 多进程压缩 JS
+  - ParallelUglifyPlugin, 多进程压缩 JS
   - 自动刷新
   - 热更新
   - 缓存(cache), webpack5 开箱即用
